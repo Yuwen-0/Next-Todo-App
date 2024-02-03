@@ -1,0 +1,10 @@
+.todoContainer{
+    display: grid;
+    width: 100%;
+    grid-template-columns:3fr repeat(3, 1fr) 45px;
+    align-items: center;
+}
+
+.todoTable{
+    width: 439px;
+}
