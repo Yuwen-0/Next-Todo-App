@@ -8,12 +8,12 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <div className={styles.mainContainer}>
-        <h1 className={styles.title}>
-          Your To Do&apos;s
-        </h1>
-        <hr className={styles.titleLine} />
         <Input label="Todo input" className={styles.input} />
         <Button variant="contained" className={styles.button}>Add</Button>
+        <h1 className={styles.title}>
+          Your To Do&apos;s
+          <hr className={styles.titleLine} />
+        </h1>
         <ALLToDos/>
       </div>
     </main>

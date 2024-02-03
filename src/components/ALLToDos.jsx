@@ -3,8 +3,8 @@ import ToDo from "./ToDo"
 
 export default function AllToDos(){
     return (
-        <div>
+        <ul className="list-outside">
             <ToDo/>
-        </div>
+        </ul>
     )
 }

@@ -8,15 +8,16 @@
 .title{
     font-size: 40px;
     width: 55%;
+    position: relative;
     background-color: #2F3C7E;
     text-align: center;
-    margin: 0 auto;
+    margin: 20px auto;
 }
 
 .titleLine{
     position: absolute;
     width: 439px;
-    left: 0;
+    left: -40%;
     z-index: -1;
     top: 30px;
 }
@@ -24,7 +25,6 @@
 .mainContainer{
     width: 439px;
     height: 377px;
-    position: relative;
 }
 
 .input{
