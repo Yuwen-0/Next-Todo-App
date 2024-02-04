@@ -10,7 +10,6 @@ export default function Home() {
   const [buttonClicked, setButtonClicked] = useState(false);
   const [ToDos, setToDos] = useState([]);
   const [refresh, setRefresh] = useState(false);
-  //TODO todos disappear when one is deleted fix it
   useEffect(() => {
     const addTodo = async () => {
       if (!InputValue || !buttonClicked) return;
