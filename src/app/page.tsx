@@ -13,9 +13,7 @@ export default function Home() {
   useEffect(() => {
     const addTodo = async () => {
       if (!InputValue || !buttonClicked) return;
-      const res = await fetch(
-        `http://localhost:3000/api/add-todo?task_name=${InputValue}`,
-      );
+      const res = await fetch(`/api/add-todo?task_name=${InputValue}`);
       const data = await res.json();
       setToDos(data.todos.rows);
       setInputValue("");
