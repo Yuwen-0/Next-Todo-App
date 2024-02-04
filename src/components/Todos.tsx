@@ -4,7 +4,9 @@ export default function Todos({ ToDos, setRefresh, setToDos, refresh }: any) {
   useEffect(() => {
     const fetchTodos = async () => {
       try {
-        const res = await fetch("/api/get-todo");
+        const res = await fetch("/api/get-todo", {
+          cache: "no-cache",
+        });
         const data = await res.json();
         setToDos(data?.todos.rows);
         console.log("ToDos", data);
