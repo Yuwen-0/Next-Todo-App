@@ -5,13 +5,14 @@ export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
     const taskName = searchParams.get('task_name');
-
-    if (!taskName) {
-      throw new Error('Task name is required');
+    const id = searchParams.get('id');
+    console.log(taskName, id);
+    if (!taskName || !id) {
+      throw new Error('Missing task_name or id');
     }
 
     // Use DEFAULT for the id column if you're using BIGSERIAL
-    await sql`INSERT INTO todos (task_name, is_done) VALUES (${taskName}, false)`;
+    await sql`INSERT INTO todos (id,task_name, is_completed) VALUES (${id},${taskName}, false)`;
 
     const todos = await sql`SELECT * FROM todos;`;
 

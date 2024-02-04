@@ -1,15 +1,14 @@
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import Todo from "@/components/ToDo";
+import { useRouter } from "next/router";
+
 export default function Todos({ ToDos, setRefresh, setToDos, refresh }: any) {
   useEffect(() => {
     const fetchTodos = async () => {
       try {
-        const res = await fetch("/api/get-todo", {
-          cache: "no-cache",
-        });
+        const res = await fetch(`${window.location.href}api/get-todo`);
         const data = await res.json();
         setToDos(data?.todos.rows);
-        console.log("ToDos", data);
       } catch (error) {
         console.error("Error fetching todos:", error);
       }
@@ -21,7 +20,12 @@ export default function Todos({ ToDos, setRefresh, setToDos, refresh }: any) {
   return (
     <>
       {Object.keys(ToDos).map((key: any) => (
-        <Todo setRefresh={setRefresh} ToDo={ToDos[key]} key={key} />
+        <Todo
+          setToDos={setToDos}
+          setRefresh={setRefresh}
+          ToDo={ToDos[key]}
+          key={key}
+        />
       ))}
     </>
   );
