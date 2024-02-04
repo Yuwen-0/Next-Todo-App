@@ -17,6 +17,20 @@
     margin-right: 10px;
 }
 
+.Todo{
+    text-align: center;
+    margin-right: auto;
+}
+
+.delete{
+    border: 2px solid red !important;
+    font-weight: 700;
+}
+
+.done{
+    text-decoration: line-through;
+    color: gray;
+}
 .todoTable{
     width: 439px;
 }
