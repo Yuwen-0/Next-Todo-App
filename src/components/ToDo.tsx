@@ -17,6 +17,7 @@ export default function ToDoOutline({ ToDo, setRefresh, setToDos }: any) {
         method: "POST",
         body: JSON.stringify({ id: ToDo.id, task: ToDo.task_name }),
       });
+      setSelectedValue("");
     }
   }, [ToDo.id, ToDo.task_name, selectedValue, setRefresh, setToDos]);
   useEffect(() => {

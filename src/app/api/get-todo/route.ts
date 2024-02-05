@@ -5,7 +5,6 @@ export async function GET(request: Request) {
   request.headers.set('Cache-Control', 'no-store, max-age=0');
   try {
     const todos = await sql`SELECT * FROM todos;`;
-    console.log(todos);
     return NextResponse.json({ todos }, { status: 200 });
   } catch (error: any) {
     console.error('Error:', error);

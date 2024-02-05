@@ -2,31 +2,36 @@
 import styles from "./Home.module.css";
 import { Button } from "@mui/material";
 import Input from "@/components/Input";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import Todos from "@/components/Todos";
 
 export default function Home() {
   const [InputValue, setInputValue] = useState("");
   const [buttonClicked, setButtonClicked] = useState(false);
   const [ToDos, setToDos] = useState<
-    { task_name: string; id: number; is_completed: boolean }[]
+    { task_name: string; id: string; is_completed: boolean }[]
   >([]);
+
+  useEffect(() => {
+    console.log("ToDos", ToDos);
+  }, [ToDos]);
   const [refresh, setRefresh] = useState(false);
   useEffect(() => {
     const addTodo = async () => {
       if (!InputValue || !buttonClicked) return;
+      const id = window.crypto
+        .getRandomValues(new Uint32Array(1))[0]
+        .toString();
       setToDos((prev) => [
         ...prev,
         {
-          id: prev.length + 1,
+          id: id,
           task_name: InputValue,
           is_completed: false,
         },
       ]);
       setInputValue("");
-      await fetch(
-        `/api/add-todo?task_name=${InputValue}&id=${ToDos.length + 1}`,
-      );
+      await fetch(`/api/add-todo?task_name=${InputValue}&id=${id}`);
     };
 
     addTodo();
@@ -54,12 +59,14 @@ export default function Home() {
           Your To Do&apos;s
           <hr className={styles.titleLine} />
         </h1>
-        <Todos
-          refresh={refresh}
-          ToDos={ToDos}
-          setRefresh={setRefresh}
-          setToDos={setToDos}
-        />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Todos
+            refresh={refresh}
+            ToDos={ToDos}
+            setRefresh={setRefresh}
+            setToDos={setToDos}
+          />
+        </Suspense>
       </div>
     </main>
   );
